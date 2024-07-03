@@ -95,6 +95,7 @@ jobs:
 
     - name: Check pods
       run: |
+        sleep 60 # Wait for pods
         kubectl get all
 
     - name: Update /etc/hosts
