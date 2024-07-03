@@ -93,6 +93,10 @@ jobs:
         kubectl apply -f k8s/hpa.yml
         kubectl apply -f k8s/ingress.yml
 
+    - name: Check pods
+      run: |
+        kubectl get all
+        
     - name: Check service availability
       run: |
         sleep 30 # Wait for the service to be available
