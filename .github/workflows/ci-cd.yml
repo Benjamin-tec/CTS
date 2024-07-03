@@ -99,7 +99,7 @@ jobs:
 
     - name: Update /etc/hosts
       run: |
-        echo "$INGRESS_IP cts-example.com" | sudo tee -a /etc/hosts    
+        echo "34.134.223.197 cts-example.com" | sudo tee -a /etc/hosts    
         
     - name: Check service availability
       run: |
