@@ -97,23 +97,6 @@ jobs:
       run: |
         kubectl get all
 
-    - name: Wait for ingress to get external IP
-      run: |
-        echo "Waiting for ingress external IP..."
-        for i in {1..30}; do
-          INGRESS_IP=$(kubectl get ingress cts-backend-ingress -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
-          if [ -n "$INGRESS_IP" ]; then
-            echo "Ingress external IP: $INGRESS_IP"
-            break
-          fi
-          echo "Retrying in 10 seconds..."
-          sleep 10
-        done
-        if [ -z "$INGRESS_IP" ]; then
-          echo "Ingress external IP not found"
-          exit 1
-        fi
-
     - name: Update /etc/hosts
       run: |
         echo "$INGRESS_IP cts-example.com" | sudo tee -a /etc/hosts    
