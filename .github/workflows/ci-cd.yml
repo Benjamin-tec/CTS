@@ -107,3 +107,47 @@ jobs:
         sleep 30 # Wait for the service to be available
         curl -f http://cts-example.com/ping
 
+  delete:
+    runs-on: ubuntu-latest
+    if: github.event.inputs.action == 'delete'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up gcloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          version: 'latest'
+
+      - name: Add Google Cloud SDK repository and install gke-gcloud-auth-plugin
+        run: |
+          echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+          sudo apt-get install -y apt-transport-https ca-certificates gnupg
+          curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+          sudo apt-get update && sudo apt-get install -y google-cloud-sdk-gke-gcloud-auth-plugin
+
+      - name: Create .kube directory
+        run: |
+          mkdir -p $HOME/.kube
+
+      - name: Set up Kubeconfig
+        run: |
+          echo "${{ secrets.KUBECONFIG }}" | base64 --decode > $HOME/.kube/config
+
+      - name: Check pods
+        run: |
+          kubectl get all
+
+
+      - name: Delete application from Kubernetes
+        run: |
+          kubectl delete -f k8s/deployment.yml
+          kubectl delete -f k8s/service.yml
+          kubectl delete -f k8s/hpa.yml
+          kubectl delete -f k8s/ingress.yml
