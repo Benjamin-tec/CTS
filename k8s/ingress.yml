@@ -2,10 +2,9 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: cts-backend-ingress
-  labels:
-    app: cts-backend
+  annotations:
+    kubernetes.io/ingress.class: "nginx"  # Use "nginx" ingress class
 spec:
-  ingressClassName: nginx
   rules:
   - host: cts-example.com
     http:
@@ -14,7 +13,8 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: cts-backend-service
+            name: cts-backend
             port:
               number: 8080
+  ingressClassName: nginx
 
