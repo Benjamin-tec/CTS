@@ -109,7 +109,7 @@ jobs:
 
   delete:
     runs-on: ubuntu-latest
-    if: github.event.inputs.action == 'delete'
+      #if: github.event.inputs.action == 'delete'
 
     steps:
       - name: Checkout code
