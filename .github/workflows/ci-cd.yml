@@ -107,9 +107,9 @@ jobs:
         sleep 30 # Wait for the service to be available
         curl -f http://cts-example.com/ping
 
-    - name: Check pods
+    - name: Check pods before deletion
       run: |
-        sleep 60
+        sleep 30
         kubectl get all
 
 
@@ -120,3 +120,7 @@ jobs:
         kubectl delete -f k8s/hpa.yml
         kubectl delete -f k8s/ingress.yml
 
+    - name: Check pods after deletion
+      run: |
+        sleep 50
+        kubectl get all
