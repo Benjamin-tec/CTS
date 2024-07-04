@@ -100,7 +100,7 @@ jobs:
 
     - name: Update /etc/hosts
       run: |
-        echo "35.202.35.108 cts-example.com" | sudo tee -a /etc/hosts    
+        echo "${{ secrets.INGRESS_IP }} cts-example.com" | sudo tee -a /etc/hosts    
         
     - name: Check service availability
       run: |
