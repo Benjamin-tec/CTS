@@ -7,15 +7,6 @@ on:
   pull_request:
     branches:
       - staging
-workflow_dispatch:
-    inputs:
-      action:
-        description: 'Action to perform'
-        required: true
-        default: 'deploy'
-        options:
-          - deploy
-          - delete
 
 
 jobs:
