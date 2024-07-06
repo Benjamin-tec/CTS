@@ -14,7 +14,7 @@ Connectivity test
 10. [Contact](#contact)
 
 ## Introduction
-This is the backend application for CTS (Custom Tracking System). It is built using Flask and is containerized using Docker. The deployment is managed using Kubernetes and Helm.
+This is the backend application for CTS (Connectivity test). It is built using Flask and is containerized using Docker. The deployment is managed using Kubernetes and Helm.
 
 ## Prerequisites
 - Python 3.9+
@@ -32,21 +32,21 @@ This is the backend application for CTS (Custom Tracking System). It is built us
 
 2. Create a virtual environment and install dependencies:
    ```bash
-   python -m venv venv
+   python3 -m venv venv
    source venv/bin/activate
-   pip install -r requirements.txt
+   pip3 install -r requirements.txt
 
 ## Running the Application:
 1. To run the application locally:
    ```bash
-   python app.py
+   python3 app.py
 
-  The application will be accessible at "http://127.0.0.1:5000"
+  The application will be accessible at "http://127.0.0.1:8080"
 
 ## Testing:
 1. To run the tests:
    ```bash
-   python -m unittest discover -s tests -p 'test_*.py'
+   python3 -m unittest discover -s tests -p 'test_*.py'
 
 ## Building and Pushing Docker Image:
 1. Build the Docker image:
@@ -71,7 +71,7 @@ This is the backend application for CTS (Custom Tracking System). It is built us
 
 3. Deploy the application using Helm:
    ```bash
-   helm upgrade --install cts-backend ./helm_charts --namespace default --set image.repository=your-dockerhub-username/cts-backend --set image.tag=latest
+   helm upgrade --install cts ./helm_charts --namespace default --set image.repository=your-dockerhub-username/cts-backend --set image.tag=latest
 
 4. Update your /etc/hosts file to map the ingress IP to the domain:
    ```bash
@@ -94,8 +94,8 @@ This project includes a GitHub Actions CI/CD pipeline configured in the .github/
 
 ## Triggering the Pipeline:
 The pipeline is triggered on:
-- Push to the staging branch.
-- Pull request to the staging branch.
+- Push to the main branch.
+- Pull request to the main branch.
 
 
 ### Contact
