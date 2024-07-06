@@ -26,6 +26,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Run tests
+        run: python -m unittest discover -s . -p 'test_*.py'
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
@@ -92,7 +95,6 @@ jobs:
 
   delete:
     runs-on: ubuntu-latest
-    if: github.event.inputs.action == 'delete'
 
     steps:
       - name: Checkout code
