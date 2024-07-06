@@ -1,12 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: cts-backend
+  name: cts-backend-service
 spec:
-  type: LoadBalancer
-  ports:
-    - port: 80
-      targetPort: 8080
   selector:
     app: cts-backend
-
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
