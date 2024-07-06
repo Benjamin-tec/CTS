@@ -93,7 +93,7 @@ jobs:
 
       - name: Deploy to Kubernetes using Helm
         run: |
-          helm upgrade --install cts ./cts-backend --namespace default --set image.repository=${{ secrets.DOCKER_USERNAME }}/cts-backend --set image.tag=latest
+          helm upgrade --install cts ./helm_charts --namespace default --set image.repository=${{ secrets.DOCKER_USERNAME }}/cts-backend --set image.tag=latest
 
       - name: Update /etc/hosts
         run: |
