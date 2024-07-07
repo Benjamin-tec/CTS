@@ -89,9 +89,14 @@ This is the backend application for CTS (Connectivity test). It is built using F
 ## CI/CD Pipeline:
 This project includes a GitHub Actions CI/CD pipeline configured in the .github/workflows/ci-cd.yml file. The pipeline includes the following jobs:
 
+Two branches first run staging to check if all stages are OK:
 1. Build: Checks out the code, installs dependencies, runs tests, builds and pushes the Docker image.
 2. Deploy: Authenticates to Google Cloud, sets up Kubernetes, and deploys the application using Helm.
 3. Delete: Deletes the application from Kubernetes using Helm.
+
+Than run a main branch for deploy:
+1. Build: Checks out the code, installs dependencies, runs tests, builds and pushes the Docker image.
+2. Deploy: Authenticates to Google Cloud, sets up Kubernetes, and deploys the application using Helm.
 
 ## Triggering the Pipeline:
 The pipeline is triggered on:
