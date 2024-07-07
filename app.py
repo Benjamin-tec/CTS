@@ -1,15 +1,10 @@
 from flask import Flask
 
-def create_app():
-    app = Flask(__name__)
+app = Flask(__name__)
 
-    @app.route('/ping', methods=['GET'])
-    def ping():
-        return 'pong', 200
+@app.route('/ping', methods=['GET'])
+def ping():
+    return "200 OK", 200
 
-    return app
-
-if __name__ == "__main__":
-    app = create_app()
+if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
-
