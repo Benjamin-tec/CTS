@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: cts-backend
-          image: 658658/cts-backend:latest
+          image: 658658/cts-connect:latest
           ports:
             - containerPort: 8080
           readinessProbe:
