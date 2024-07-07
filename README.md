@@ -27,8 +27,8 @@ This is the backend application for CTS (Connectivity test). It is built using F
 ## Setup
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/cts-backend.git
-   cd cts-backend
+   git clone git@github.com:Benjamin-tec/CTS.git
+   cd CTS
 
 2. Create a virtual environment and install dependencies:
    ```bash
@@ -51,12 +51,12 @@ This is the backend application for CTS (Connectivity test). It is built using F
 ## Building and Pushing Docker Image:
 1. Build the Docker image:
    ```bash
-   docker build -t your-dockerhub-username/cts-backend:latest .
+   docker build -t your-dockerhub-username/cts-connect:latest .
 
 2. Push the Docker image to Docker Hub:
    ```bash
    docker login
-   docker push your-dockerhub-username/cts-backend:latest
+   docker push your-dockerhub-username/cts-connect:latest
 
 ### Deploying to Kubernetes:
 1. Authenticate to Google Cloud:
@@ -71,7 +71,7 @@ This is the backend application for CTS (Connectivity test). It is built using F
 
 3. Deploy the application using Helm:
    ```bash
-   helm upgrade --install cts ./helm_charts --namespace default --set image.repository=your-dockerhub-username/cts-backend --set image.tag=latest
+   helm upgrade --install cts ./helm_charts --namespace default --set image.repository=your-dockerhub-username/cts-connect --set image.tag=latest
 
 4. Update your /etc/hosts file to map the ingress IP to the domain:
    ```bash
@@ -84,7 +84,7 @@ This is the backend application for CTS (Connectivity test). It is built using F
 ## Deleting the Application:
 1. To delete the application from Kubernetes using Helm:
    ```bash
-   helm uninstall cts-backend --namespace default
+   helm uninstall cts --namespace default
 
 ### CI/CD Pipeline:
 This project includes a GitHub Actions CI/CD pipeline configured in the .github/workflows/ci-cd.yml file. The pipeline includes the following jobs:
