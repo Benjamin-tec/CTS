@@ -90,5 +90,5 @@ jobs:
 
       - name: Check service availability
         run: |
-          sleep 30 # Wait for the service to be available
+          sleep 60 # Wait for the service to be available
           curl -f http://cts-example.com/ping || exit 1
