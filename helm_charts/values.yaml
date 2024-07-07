@@ -1,7 +1,7 @@
 replicaCount: 2
 
 image:
-  repository: 658658/cts
+  repository: 658658/cts-connect
   pullPolicy: IfNotPresent
   tag: "latest"
 
