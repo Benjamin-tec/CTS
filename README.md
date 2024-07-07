@@ -58,7 +58,7 @@ This is the backend application for CTS (Connectivity test). It is built using F
    docker login
    docker push your-dockerhub-username/cts-connect:latest
 
-### Deploying to Kubernetes:
+## Deploying to Kubernetes:
 1. Authenticate to Google Cloud:
    ```bash
    gcloud auth activate-service-account --key-file=path/to/your-service-account-key.json
@@ -81,22 +81,56 @@ This is the backend application for CTS (Connectivity test). It is built using F
    ```bash
    curl -f http://cts-example.com/ping
 
-## Deleting the Application:
+### Deleting the Application:
 1. To delete the application from Kubernetes using Helm:
    ```bash
    helm uninstall cts --namespace default
 
-### CI/CD Pipeline:
+## CI/CD Pipeline:
 This project includes a GitHub Actions CI/CD pipeline configured in the .github/workflows/ci-cd.yml file. The pipeline includes the following jobs:
 
 1. Build: Checks out the code, installs dependencies, runs tests, builds and pushes the Docker image.
 2. Deploy: Authenticates to Google Cloud, sets up Kubernetes, and deploys the application using Helm.
+3. Delete: Deletes the application from Kubernetes using Helm.
 
 ## Triggering the Pipeline:
 The pipeline is triggered on:
 - Push to the main branch.
 - Pull request to the main branch.
 
+## APPENDIX
+
+### Create cluster on google cloud
+
+1. Get tar files:
+   ```bash
+   curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-linux-x86_64.tar.gz
+   tar -xf google-cloud-cli-linux-x86_64.tar.gz
+   ./google-cloud-sdk/install.sh
+   gcloud init --console-only
+
+2. Enable the Kubernetes Engine API:
+   ```bash
+   gcloud services enable container.googleapis.com
+   
+3. Install kubectl:
+   ```bash
+   gcloud components install kubectl
+
+4. Create a GKE cluster:
+   ```bash
+   gcloud container clusters create cts-cluster --zone us-central1-a --num-nodes 1
+
+5. Get authentication credentials for the cluster:
+   ```bash
+   gcloud container clusters get-credentials [CLUSTER_NAME] --zone [COMPUTE_ZONE]
+
+
+## LINKS
+
+google cloud:
+https://cloud.google.com/sdk/docs/install-sdk#linux
+https://z2jh.jupyter.org/en/3.3.4/kubernetes/google/step-zero-gcp.html
 
 ### Contact
 
