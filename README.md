@@ -43,11 +43,6 @@ This is the backend application for CTS (Connectivity test). It is built using F
 
   The application will be accessible at "http://127.0.0.1:8080"
 
-## Testing:
-1. To run the tests:
-   ```bash
-   python3 -m unittest discover -s tests -p 'test_*.py'
-
 ## Building and Pushing Docker Image:
 1. Build the Docker image:
    ```bash
