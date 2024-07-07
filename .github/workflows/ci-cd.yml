@@ -47,7 +47,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/cts-backend:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/cts-connect:latest
 
   deploy:
     runs-on: ubuntu-latest
