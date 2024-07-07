@@ -27,4 +27,3 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 app.kubernetes.io/name: {{ include "cts-backend.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
-
